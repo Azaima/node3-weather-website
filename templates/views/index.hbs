@@ -11,7 +11,16 @@
 </head>
 <body>
     <div class="main-content">
-        {{>header}}ç
+        {{>header}}
+
+            <form>
+                <input placeholder="location">
+                <button>Search</button>
+            </form>
+
+            <p id="error-message"></p>
+
+            <p id="weather-message"></p>
     </div>
     
     {{>footer}}
