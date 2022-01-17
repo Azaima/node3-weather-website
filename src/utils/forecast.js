@@ -11,32 +11,34 @@ const forecast = (lat, long, callback) => {
                 
             const {name, region, country} = body.location
             const {temperature, feelslike, precip, wind_speed, humidity, wind_degree, wind_dir} = body.current
-            var wind_direction = ''
-            switch (wind_dir) {
-                case 'N':
-                    wind_direction = 'North'
-                    break
+            
+            var wind_dir_array = []
+            wind_dir.split('').forEach((letter) => {
+                switch (letter) {
+                    case 'N':
+                        wind_dir_array.push('North')
+                        break
 
-                case 'E':
-                    wind_direction = 'East'
-                    break
+                    case 'E':
+                        wind_dir_array.push('East')
+                        break
 
-                case 'S':
-                    wind_direction = 'South'
-                    break
+                    case 'S':
+                        wind_dir_array.push('South')
+                        break
 
-                case 'W':
-                    wind_direction = 'West'
-                    break
+                    case 'W':
+                        wind_dir_array.push('West')
+                        break
+                }
+            })
 
-                default:
-                    wind_direction = wind_dir
-            }
-            console.log(body.current)
+            var wind_dir_concat = wind_dir_array.join('-')
+            
 
             callback (undefined, 'It is currently ' + temperature + ' degrees, but it feels like ' 
             + feelslike + '. The humidity is '+ humidity+'% with a '+ precip+'% of rain. Wind is blowing at ' 
-            + wind_speed + 'Km/h with a direction of ' + wind_degree + ' degrees ' + wind_direction + '.')
+            + wind_speed + 'Km/h with a direction of ' + wind_degree + ' degrees ' + wind_dir_concat + '.')
         }
         
     })
